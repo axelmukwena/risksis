@@ -28,3 +28,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    - https://favicon.io/favicon-generator/
 ### UI Framework
    - [Bootstrap 5 in vue](https://dev.to/tefoh/use-bootstrap-5-in-vue-correctly-2k2g)
+
+### Icons
+   - [Material Design Icons for Vue.js](https://github.com/therufa/mdi-vue)
+   - Search for Icons [here](https://materialdesignicons.com/)
