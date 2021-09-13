@@ -42,8 +42,6 @@
                                 :id="item.id1"
                                 v-bind:class="item.tg"
                                 aria-expanded="false"
-                                @mouseenter="onOverLink(item.id1)"
-                                @mouseout="onLeaveLink(item.id1)"
                             >
                                 {{ item.title }}
                             </router-link>
@@ -83,21 +81,20 @@
                 <button class="search nav-link">
                     <mdicon class="search-icon" name="magnify" />
                 </button>
-                <button
-                    type="button"
-                    width="100"
-                    class="btn btn-outline-primary"
-                >
-                    Sign In
-                </button>
+                <w-btn>Sign In</w-btn>
             </div>
         </nav>
     </header>
 </template>
 
 <script>
+import ButtonWave from 'src/components/ButtonWave.vue'
+
 export default {
     name: 'main-menu',
+    components: {
+        'w-btn': ButtonWave
+    },
     data() {
         return {
             menuItems: [
@@ -195,7 +192,7 @@ export default {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #fff;
+    background-color: white;
     background-clip: padding-box;
     border: 1px solid rgb(230 230 230);
     border-radius: 0.25rem;
@@ -220,19 +217,20 @@ export default {
     color: #70a9d8;
 }
 
-.btn-outline-primary {
+.custom-btn {
     color: #0054aa;
-    border-color: #0054aa;
-    width: 6em;
+    font-weight: 500;
+    font-size: 0.9em;
+    border: 2px solid #0054aa;
+    min-width: 6em;
+    box-shadow: 0 2px 29px rgba(0, 0, 0, 0.12);
 }
 
-.btn-outline-primary:hover {
-    background-color: #0054aa;
-    border-color: #0054aa;
-    color: white;
+.custom-btn:hover {
+    color: #0054aa;
 }
 
-.btn:focus {
+.custom-btn:focus {
     outline: none !important;
     box-shadow: none !important;
 }

@@ -1,5 +1,18 @@
 <template>
     <div>
+        <div
+            class="wave"
+            v-wave="{
+                color: 'currentColor',
+                easing: 'ease-out',
+                duration: 0.4,
+                initialOpacity: 0.2,
+                finalOpacity: 0.1,
+                cancellationPeriod: 75
+            }"
+        >
+            Example
+        </div>
         <button type="button" class="btn btn-primary" @click="modal.show()">
             Launch demo modal
         </button>
@@ -54,3 +67,15 @@ export default {
     }
 }
 </script>
+
+<style>
+.wave {
+    background: #fff;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+</style>

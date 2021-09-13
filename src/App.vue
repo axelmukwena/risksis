@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <main-menu />
         <div class="container-xxl my-md-4 bd-layout">
             <router-view />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import MainMenu from './components/MainMenu.vue'
+import MainMenu from 'src/components/MainMenu.vue'
 
 export default {
     name: 'App',
@@ -17,3 +17,11 @@ export default {
     }
 }
 </script>
+
+<style>
+
+.container-fluid {
+    padding: 0 !important;
+    height: 100%;
+}
+</style>
