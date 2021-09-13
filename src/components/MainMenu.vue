@@ -90,7 +90,6 @@ var hovering = 0
 export default {
     data() {
         return {
-            // hovering: 0,
             menuItems: [
                 {
                     title: 'Products & Services',
@@ -166,6 +165,7 @@ export default {
         var e
         for (e = 0; e < navItems.length; e++) {
             navItems[e].addEventListener('mouseover', function() {
+                console.log('Hey One')
                 this.click()
             })
 
