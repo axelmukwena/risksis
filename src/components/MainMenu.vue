@@ -29,6 +29,57 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <div v-for="item in menuItems" :key="item.title">
+                        <li
+                            v-if="item.class === 'dropdown'"
+                            class="nav-item dropdown"
+                        >
+                            <router-link
+                                class="nav-link"
+                                :to="item.path"
+                                :data-bs-toggle="item.class"
+                                :id="item.id1"
+                                v-bind:class="item.tg"
+                                aria-expanded="false"
+                                @mouseenter="onOverLink(item.id1)"
+                                @mouseout="onLeaveLink(item.id1)"
+                            >
+                                {{ item.title }}
+                            </router-link>
+
+                            <ul
+                                v-for="i in item.id2"
+                                :key="i.title"
+                                class="dropdown-menu"
+                                :aria-labelledby="item.id1"
+                                :id="i.title"
+                            >
+                                <li
+                                    v-for="sub in item.subItems"
+                                    :key="sub.title"
+                                >
+                                    <hr
+                                        v-if="sub.class === 'divider'"
+                                        class="dropdown-divider"
+                                    />
+                                    <router-link
+                                        v-else
+                                        :to="sub.path"
+                                        class="nav-link dropdown-link"
+                                    >
+                                        {{ sub.title }}
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li v-else class="nav-item">
+                            <router-link class="nav-link" :to="item.path">
+                                {{ item.title }}
+                            </router-link>
+                        </li>
+                    </div>
+                </ul>
                 <button class="search nav-link">
                     <mdicon class="search-icon" name="magnify" />
                 </button>
@@ -45,9 +96,8 @@
 </template>
 
 <script>
-var hovering = 0
-var hovering2 = 0
 export default {
+    name: 'main-menu',
     data() {
         return {
             menuItems: [
@@ -55,136 +105,26 @@ export default {
                     title: 'Products & Services',
                     path: '/about',
                     class: 'dropdown',
-                    id: 'products',
+                    id1: 'products',
                     id2: [{ title: 'products-dropdown' }],
                     tg: 'dropdown-toggle', // Dropdown toggle varialble
                     subItems: [
-                        {
-                            title: 'View All',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        { title: 'hr', path: '', class: 'dropdown-divider' },
-                        {
-                            title: 'Data',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Infrastructure',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Research',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Analytics',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        }
+                        { title: 'View All', class: '', path: '/about' },
+                        { title: 'hr', class: 'divider' }, // Horizontal Divider
+                        { title: 'Data', class: '', path: '/about' },
+                        { title: 'Infrastructure', class: '', path: '/about' },
+                        { title: 'Research', class: '', path: '/about' },
+                        { title: 'Analytics', class: '', path: '/about' }
                     ]
                 },
-                {
-                    title: 'Research',
-                    path: '/about',
-                    class: '',
-                    id: '',
-                    tg: ''
-                },
-                {
-                    title: 'Investors',
-                    path: '/about',
-                    class: '',
-                    id: '',
-                    tg: ''
-                },
-                {
-                    title: 'About',
-                    path: '/about',
-                    class: '',
-                    id: '',
-                    tg: ''
-                },
-                {
-                    title: 'Contact Us',
-                    path: '/about',
-                    class: '',
-                    id: '',
-                    tg: ''
-                },
-                {
-                    title: 'Food & Services',
-                    path: '/about',
-                    class: 'dropdown',
-                    id: 'food',
-                    id2: [{ title: 'food-dropdown' }],
-                    tg: 'dropdown-toggle', // Dropdown toggle varialble
-                    subItems: [
-                        {
-                            title: 'food All',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        { title: 'hr', path: '', class: 'dropdown-divider' },
-                        {
-                            title: 'Data',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Infrastructure',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Research',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        },
-                        {
-                            title: 'Analytics',
-                            path: '/about',
-                            class: 'nav-link dropdown-link'
-                        }
-                    ]
-                }
+                { title: 'Research', class: '', path: '/about', id2: [] },
+                { title: 'Investors', class: '', path: '/about', id2: [] },
+                { title: 'About', class: '', path: '/about', id2: [] },
+                { title: 'Contact Us', class: '', path: '/about', id2: [] }
             ]
         }
     },
-    mounted() {
-        var navItems = document.getElementsByClassName('dropdown-toggle')
-        var e
-        for (e = 0; e < navItems.length; e++) {
-            navItems[e].addEventListener('mouseover', function() {
-                this.click()
-                hovering2 = 4
-            })
-
-            navItems[e].addEventListener('mouseleave', function() {
-                hovering = 1
-                hovering2 = 1
-                setTimeout(() => {
-                    if (hovering === 1 && hovering2 !== 4) {
-                        this.click()
-                    }
-                }, 10)
-            })
-        }
-
-        var dropMenus = document.getElementsByClassName('dropdown-menu')
-        for (e = 0; e < dropMenus.length; e++) {
-            dropMenus[e].addEventListener('mouseover', function() {
-                hovering = 2
-            })
-
-            dropMenus[e].addEventListener('mouseleave', function() {
-                this.click()
-            })
-        }
-    }
+    methods: {}
 }
 </script>
 
@@ -203,6 +143,9 @@ export default {
     font-weight: 500;
     font-size: 0.9em;
     margin-top: 0.3em;
+}
+.dropdown-link {
+    margin-top: -0.4em !important;
 }
 
 .navbar-light .navbar-nav .nav-link.active {
@@ -234,6 +177,10 @@ export default {
 .dropdown-toggle:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: grid;
 }
 
 .dropdown-menu {
