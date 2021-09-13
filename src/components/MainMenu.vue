@@ -34,7 +34,7 @@
                         <button
                             class="btn btn-secondary dropdown-toggle"
                             type="button"
-                            id="dropdownMenuButton1"
+                            id="dropdownMenuButton333"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
@@ -42,7 +42,7 @@
                         </button>
                         <ul
                             class="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton1"
+                            aria-labelledby="dropdownMenuButton333"
                         >
                             <li>
                                 <a class="dropdown-item" href="#">Action</a>
@@ -183,6 +183,42 @@ export default {
                     class: '',
                     id: '',
                     tg: ''
+                },
+                {
+                    title: 'Food & Services',
+                    path: '/about',
+                    class: 'dropdown',
+                    id: 'food',
+                    id2: [{ title: 'food-dropdown' }],
+                    tg: 'dropdown-toggle', // Dropdown toggle varialble
+                    subItems: [
+                        {
+                            title: 'food All',
+                            path: '/about',
+                            class: 'nav-link dropdown-link'
+                        },
+                        { title: 'hr', path: '', class: 'dropdown-divider' },
+                        {
+                            title: 'Data',
+                            path: '/about',
+                            class: 'nav-link dropdown-link'
+                        },
+                        {
+                            title: 'Infrastructure',
+                            path: '/about',
+                            class: 'nav-link dropdown-link'
+                        },
+                        {
+                            title: 'Research',
+                            path: '/about',
+                            class: 'nav-link dropdown-link'
+                        },
+                        {
+                            title: 'Analytics',
+                            path: '/about',
+                            class: 'nav-link dropdown-link'
+                        }
+                    ]
                 }
             ]
         }
@@ -194,7 +230,6 @@ export default {
         var e
         for (e = 0; e < navItems.length; e++) {
             navItems[e].addEventListener('mouseover', function() {
-                console.log(this)
                 this.click()
             })
 
@@ -202,9 +237,9 @@ export default {
                 hovering = 1
                 setTimeout(() => {
                     if (hovering === 1) {
-                        this.click()
+                        // this.click()
                     }
-                }, 50)
+                }, 10)
             })
         }
 
