@@ -20,7 +20,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 .custom-btn {
     color: #0054aa;
     font-weight: 500;
@@ -37,4 +38,5 @@ export default {
     outline: none !important;
     box-shadow: none !important;
 }
+
 </style>

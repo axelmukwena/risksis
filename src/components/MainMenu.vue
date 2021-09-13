@@ -81,7 +81,7 @@
                 <button class="search nav-link">
                     <mdicon class="search-icon" name="magnify" />
                 </button>
-                <w-btn>Sign In</w-btn>
+                <button-wave>Sign In</button-wave>
             </div>
         </nav>
     </header>
@@ -93,7 +93,7 @@ import ButtonWave from './ButtonWave.vue'
 export default {
     name: 'main-menu',
     components: {
-        'w-btn': ButtonWave
+        ButtonWave
     },
     data() {
         return {
@@ -125,7 +125,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .navbar {
     background-color: white;
     border-bottom: 1px solid rgb(230 230 230);
@@ -215,23 +215,5 @@ export default {
 
 .search:hover {
     color: #70a9d8;
-}
-
-.custom-btn {
-    color: #0054aa;
-    font-weight: 500;
-    font-size: 0.9em;
-    border: 2px solid #0054aa;
-    min-width: 6em;
-    box-shadow: 0 2px 29px rgba(0, 0, 0, 0.12);
-}
-
-.custom-btn:hover {
-    color: #0054aa;
-}
-
-.custom-btn:focus {
-    outline: none !important;
-    box-shadow: none !important;
 }
 </style>
