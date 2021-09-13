@@ -15,8 +15,8 @@ Vue.use(mdiVue, {
 Vue.config.productionTip = false
 
 new Vue({
+    VueMeta,
     router,
     store,
-    VueMeta,
     render: h => h(App)
 }).$mount('#app')

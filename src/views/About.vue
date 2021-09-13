@@ -5,10 +5,6 @@
 </template>
 <script>
 export default {
-    name: 'about',
-    metaInfo: {
-        title: 'Default App Title',
-        titleTemplate: '%s | About page'
-    }
+    name: 'about'
 }
 </script>

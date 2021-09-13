@@ -51,9 +51,6 @@ export default {
     modal: null,
     mounted() {
         this.modal = new Modal(this.$refs.exampleModal)
-    },
-    metaInfo: {
-        title: 'Algorithmic Analytic and Principal Strategies'
     }
 }
 </script>
