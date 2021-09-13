@@ -287,6 +287,7 @@ export default {
 .btn-outline-primary:hover {
     background-color: #0054aa;
     border-color: #0054aa;
+    color: white;
 }
 
 .btn:focus {
