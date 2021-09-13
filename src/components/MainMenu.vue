@@ -165,7 +165,7 @@ export default {
         var e
         for (e = 0; e < navItems.length; e++) {
             navItems[e].addEventListener('mouseover', function() {
-                console.log('Hey One')
+                console.log(this)
                 this.click()
             })
 
