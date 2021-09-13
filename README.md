@@ -40,3 +40,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         - Check comments: https://www.digitalocean.com/community/tutorials/vuejs-vue-meta
         - https://github.com/nuxt/vue-meta/issues/533
 
+### Components
+    - https://codeburst.io/creating-reusable-components-with-vue-js-button-component-503167facfde
+
+### Root path for imports
+    -https://stackoverflow.com/a/52648570/8050183
+

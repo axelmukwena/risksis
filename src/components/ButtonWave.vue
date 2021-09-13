@@ -8,9 +8,9 @@
             cancellationPeriod: 75
         }"
         type="button"
-        class="custom-btn btn"
+        class="btn custom-btn"
     >
-        Insert Text
+        Custom Text
     </button>
 </template>
 

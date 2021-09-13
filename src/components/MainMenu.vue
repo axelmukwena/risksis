@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import ButtonWave from 'src/components/ButtonWave.vue'
+import ButtonWave from './ButtonWave.vue'
 
 export default {
     name: 'main-menu',
