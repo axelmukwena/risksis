@@ -29,76 +29,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <div class="dropdown">
-                        <button
-                            class="btn btn-secondary dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton333"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            Dropdown button
-                        </button>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton333"
-                        >
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#"
-                                    >Another action</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#"
-                                    >Something else here</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <li
-                        class="nav-item"
-                        v-for="item in menuItems"
-                        :key="item.title"
-                        v-bind:class="item.class"
-                    >
-                        <router-link
-                            class="nav-link"
-                            :to="item.path"
-                            :data-bs-toggle="item.class"
-                            :id="item.id"
-                            v-bind:class="item.tg"
-                            aria-expanded="false"
-                            ref="dropdown"
-                        >
-                            {{ item.title }}
-                        </router-link>
-
-                        <ul
-                            v-for="i in item.id2"
-                            :key="i.title"
-                            class="dropdown-menu"
-                            :aria-labelledby="item.id"
-                            :id="i.title"
-                        >
-                            <li v-for="sub in item.subItems" :key="sub.title">
-                                <router-link
-                                    v-if="
-                                        sub.class === 'nav-link dropdown-link'
-                                    "
-                                    :to="sub.path"
-                                    :class="sub.class"
-                                >
-                                    {{ sub.title }}
-                                </router-link>
-                                <hr v-else :class="sub.class" />
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
                 <button class="search nav-link">
                     <mdicon class="search-icon" name="magnify" />
                 </button>
@@ -116,6 +46,7 @@
 
 <script>
 var hovering = 0
+var hovering2 = 0
 export default {
     data() {
         return {
@@ -223,21 +154,21 @@ export default {
             ]
         }
     },
-    computed: {},
-    methods: {},
     mounted() {
         var navItems = document.getElementsByClassName('dropdown-toggle')
         var e
         for (e = 0; e < navItems.length; e++) {
             navItems[e].addEventListener('mouseover', function() {
                 this.click()
+                hovering2 = 4
             })
 
             navItems[e].addEventListener('mouseleave', function() {
                 hovering = 1
+                hovering2 = 1
                 setTimeout(() => {
-                    if (hovering === 1) {
-                        // this.click()
+                    if (hovering === 1 && hovering2 !== 4) {
+                        this.click()
                     }
                 }, 10)
             })
