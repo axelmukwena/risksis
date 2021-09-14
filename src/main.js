@@ -9,12 +9,29 @@ import * as mdijs from '@mdi/js'
 import VueMeta from 'vue-meta'
 import VWave from 'v-wave'
 
-Vue.use(mdiVue, {
-    icons: mdijs
-})
+Vue.use(mdiVue, { icons: mdijs })
 Vue.use(VWave)
-
 Vue.config.productionTip = false
+
+Vue.prototype.$menuItems = [
+    {
+        title: 'Products & Services',
+        path: '/about',
+        id: 'products',
+        subItems: [
+            { title: 'View All', path: '/about' },
+            { title: '$hr' }, // Horizontal Divider
+            { title: 'Data', path: '/' },
+            { title: 'Infrastructure', path: '/about' },
+            { title: 'Research', path: '/' },
+            { title: 'Analytics', path: '/about' }
+        ]
+    },
+    { title: 'Research', path: '/', subItems: [] },
+    { title: 'Investors', path: '/about', subItems: [] },
+    { title: 'About', path: '/', subItems: [] },
+    { title: 'Contact Us', path: '/about', subItems: [] }
+]
 
 new Vue({
     VueMeta,

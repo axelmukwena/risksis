@@ -1,6 +1,7 @@
 <template>
     <div class="">
-        <main-menu />
+        <top-bar />
+
         <div class="container-xxl my-md-4 bd-layout">
             <router-view />
         </div>
@@ -8,20 +9,20 @@
 </template>
 
 <script>
-import MainMenu from './components/MainMenu.vue'
+import TopBar from './components/TopBar.vue'
 
 export default {
     name: 'App',
     components: {
-        MainMenu
+        TopBar
     }
 }
 </script>
 
 <style>
-
-.container-fluid {
-    padding: 0 !important;
-    height: 100%;
+@media (max-width: 768px) {
+    .container-xxl {
+        padding: 0.75rem;
+    }
 }
 </style>
