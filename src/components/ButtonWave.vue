@@ -10,7 +10,7 @@
         type="button"
         class="btn custom-btn"
     >
-        Custom Text
+        <slot> Custom Text </slot>
     </button>
 </template>
 
@@ -32,6 +32,7 @@ export default {
 
 .custom-btn:hover {
     color: #0054aa;
+    background-color: #e6f3ff;
 }
 
 .custom-btn:focus {

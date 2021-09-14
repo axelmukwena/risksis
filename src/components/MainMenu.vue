@@ -14,7 +14,7 @@
                     src="../assets/images/risksis-mobile-logo.png"
                     alt="Risksis logo"
                     width=""
-                    height="30"
+                    height="35"
                 />
             </router-link>
             <button
@@ -26,7 +26,7 @@
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             >
-                <span class="navbar-toggler-icon"></span>
+                <mdicon name="menu" class="custom-toggler-icon" />
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -125,7 +125,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .navbar {
     background-color: white;
     border-bottom: 1px solid rgb(230 230 230);
@@ -133,6 +133,11 @@ export default {
 
 .bd-navbar {
     padding: 0.75rem 0;
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -158,17 +163,6 @@ export default {
         padding-right: 0.8rem;
         padding-left: 0.8rem;
     }
-}
-
-.navbar-toggler {
-    color: rgba(0, 0, 0, 0.55);
-    border: 0;
-}
-
-.navbar-toggler:focus {
-    text-decoration: none;
-    outline: 0;
-    box-shadow: 0 0 0 0.00025rem;
 }
 
 .dropdown-toggle:focus {
@@ -214,6 +208,29 @@ export default {
 }
 
 .search:hover {
+    color: #70a9d8;
+}
+
+.navbar-toggler {
+    border: 0;
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+}
+
+.navbar-toggler:focus:hover {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    color: #70a9d8;
+    background-color: #e6f3ff;
+}
+
+.custom-toggler-icon {
+    margin-left: -6.5px;
+}
+.custom-toggler-icon:focus {
     color: #70a9d8;
 }
 </style>

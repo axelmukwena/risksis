@@ -46,3 +46,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Root path for imports
     -https://stackoverflow.com/a/52648570/8050183
 
+### V-Wave
+    - https://github.com/justintaddei/v-wave
+
