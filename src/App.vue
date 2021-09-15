@@ -21,7 +21,7 @@ export default {
 <style scoped>
 @media (max-width: 768px) {
     .container-xxl {
-        padding: 0.75rem;
+        padding: 1.5rem;
     }
 }
 

@@ -1,56 +1,12 @@
 <template>
-    <div class="row">
-        <div class="col">
-            <Plotly
-                :data="data"
-                :layout="layout"
-                :display-mode-bar="true"
-            ></Plotly>
-        </div>
-        <div class="col text-space">
-            <h2 class="title">
-                Surface Plot With Contours using
-                <a href="https://github.com/plotly/plotly.js" target="_blank">
-                    Plotly
-                </a>
-                with a Vue.js wrapper,
-                <a
-                    href="https://github.com/David-Desmaisons/vue-plotly"
-                    target="_blank"
-                >
-                    Vue-Plotly
-                </a>
-            </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                et pretium lectus, eget condimentum mi. In hac habitasse platea
-                dictumst. Aenean et odio sed velit tristique bibendum. Duis sit
-                amet urna non massa pulvinar convallis a eu massa. Sed porttitor
-                ligula non nibh elementum convallis.
-            </p>
-
-            <p>
-                Nullam eros enim, hendrerit ac viverra a, tempor at magna.
-                Nullam sagittis, sapien nec accumsan sodales, ligula libero
-                bibendum odio, at ornare ipsum purus eu nunc.
-            </p>
-            <p>
-                Nam porta mauris vitae enim mollis volutpat. Vestibulum ante
-                ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                curae; Sed ornare lorem nec massa ultricies consectetur. Donec
-                semper ornare dolor eu pulvinar. Phasellus congue ut nunc ac
-                pretium. Cras pellentesque sem aliquet erat aliquam, venenatis
-                viverra nisl mattis.
-            </p>
-        </div>
-    </div>
+    <Plotly :data="data" :layout="layout" :display-mode-bar="false"></Plotly>
 </template>
 
 <script>
 import { Plotly } from 'vue-plotly'
 
 export default {
-    name: 'graph',
+    name: 'plotly-graph',
     components: {
         Plotly
     },
@@ -221,16 +177,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.title {
-    font-weight: bold;
-    padding-bottom: 10px;
-}
-
-.text-space {
-    border: 1px solid gray;
-    border-radius: 20px;
-    padding: 2em;
-}
-</style>
