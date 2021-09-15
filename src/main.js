@@ -29,8 +29,6 @@ Vue.prototype.$menuItems = [
             { title: 'Analytics', path: '/about' }
         ]
     },
-    { title: 'Three JS', path: '/three', subItems: [] },
-    { title: 'Plotly Graph', path: '/plotly', subItems: [] },
     { title: 'Research', path: '/', subItems: [] },
     { title: 'Investors', path: '/about', subItems: [] },
     { title: 'About', path: '/', subItems: [] },

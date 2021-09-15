@@ -4,8 +4,32 @@
             <text-block>
                 <template v-slot:title>
                     A
+                    <router-link to="three-simple">
+                        simple directed graph
+                    </router-link>
+                    replica
+                </template>
+
+                <template v-slot:paragraph>
+                    Interactive, used
+                    <a
+                        href="https://github.com/vasturiano/3d-force-graph"
+                        target="_blank"
+                    >
+                        3D Force Graph
+                    </a>
+                    which based on
+                    <a href="https://threejs.org/" target="_blank">
+                        ThreeJS
+                    </a>
+                </template>
+            </text-block>
+        </div>
+        <div class="col-sm-6">
+            <text-block>
+                <template v-slot:title>
                     <router-link to="/plotly">
-                        3D Graph
+                        3D Graphs
                     </router-link>
                     using Plotly
                 </template>
@@ -29,7 +53,6 @@
                 </template>
             </text-block>
         </div>
-        <div class="col-sm-6"></div>
     </div>
 </template>
 
