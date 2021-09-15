@@ -6,8 +6,5 @@ module.exports = {
             entry: 'src/main.js',
             title: 'Risksis'
         }
-    },
-    chainWebpack(config) {
-        config.plugins.delete('prefetch')
     }
 }
