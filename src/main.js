@@ -8,11 +8,13 @@ import mdiVue from 'mdi-vue/v2'
 import * as mdijs from '@mdi/js'
 import VueMeta from 'vue-meta'
 import VWave from 'v-wave'
+import axios from 'axios'
 
 Vue.use(mdiVue, { icons: mdijs })
 Vue.use(VWave)
 Vue.config.productionTip = false
 
+Vue.prototype.$http = axios
 Vue.prototype.$menuItems = [
     {
         title: 'Products & Services',

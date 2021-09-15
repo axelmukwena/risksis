@@ -1,7 +1,6 @@
 <template>
     <div class="">
         <top-bar />
-
         <div class="container-xxl my-md-4 bd-layout">
             <router-view />
         </div>
@@ -19,10 +18,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @media (max-width: 768px) {
     .container-xxl {
         padding: 0.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .my-md-4 {
+        margin-top: 3em !important;
+        margin-bottom: 1.5rem !important;
     }
 }
 </style>

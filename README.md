@@ -53,3 +53,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    - https://mmenujs.com/
    - Worth checking out
 
+### 3D Plotting using Plotly
+   - https://github.com/David-Desmaisons/vue-plotly
+   - https://github.com/plotly/plotly.js
+
