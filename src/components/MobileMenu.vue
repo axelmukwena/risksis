@@ -171,7 +171,7 @@ export default {
     background-color: #0054aa;
     overflow-x: hidden;
     transition: width 0.5s;
-    padding-top: 1.1em;
+    padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-left: 0;
 }

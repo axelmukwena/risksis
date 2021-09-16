@@ -27,7 +27,8 @@ export default {
 .text-space {
     border: 1px solid gray;
     border-radius: 20px;
-    padding: 2em;
+    padding: 0.7em 2em 2em 2em;
+    background-color: white;
 }
 
 @media (max-width: 768px) {

@@ -57,3 +57,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    - https://github.com/David-Desmaisons/vue-plotly
    - https://github.com/plotly/plotly.js
 
+### How does ThreeJS compare?
+   - It may still require a large amount of structure programming to set-up. E.g the Scatter plot here http://bl.ocks.org/phil-pedruco/9852362, as compared to the Plotly library https://plotly.com/javascript/3d-scatter-plots/. 
+   - Through I think the ThreeJS allows a lot of customization of the scenes.
+
+### Particles
+   - https://www.npmjs.com/package/particles.vue
+   - Based on TypeScript https://github.com/matteobruni/tsparticles

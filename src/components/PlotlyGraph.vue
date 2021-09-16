@@ -74,9 +74,9 @@ export default {
             this.layout = {
                 title: 'Mt Bruno Elevation With Projected Contours',
                 scene: { camera: { eye: { x: 1.87, y: 0.88, z: -0.64 } } },
-                autosize: false,
                 width: 500,
                 height: 500,
+                showgrid: false,
                 margin: {
                     l: 65,
                     r: 50,

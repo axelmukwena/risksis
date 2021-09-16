@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="main-container">
         <top-bar />
         <div class="container-xxl my-md-4 bd-layout">
             <router-view />

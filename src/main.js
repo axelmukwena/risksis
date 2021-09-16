@@ -9,30 +9,34 @@ import * as mdijs from '@mdi/js'
 import VueMeta from 'vue-meta'
 import VWave from 'v-wave'
 import axios from 'axios'
+import Particles from 'particles.vue'
 
 Vue.use(mdiVue, { icons: mdijs })
 Vue.use(VWave)
+Vue.use(Particles)
+
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios
 Vue.prototype.$menuItems = [
     {
         title: 'Products & Services',
-        path: '/about',
+        path: '/products',
         id: 'products',
         subItems: [
-            { title: 'View All', path: '/about' },
+            { title: 'View All', path: '/products' },
             { title: '$hr' }, // Horizontal Divider
-            { title: 'Data', path: '/' },
-            { title: 'Infrastructure', path: '/about' },
-            { title: 'Research', path: '/' },
-            { title: 'Analytics', path: '/about' }
+            { title: 'Data', path: '/products' },
+            { title: 'Infrastructure', path: '/products' },
+            { title: 'Research', path: '/products' },
+            { title: 'Analytics', path: '/products' }
         ]
     },
-    { title: 'Research', path: '/', subItems: [] },
-    { title: 'Investors', path: '/about', subItems: [] },
-    { title: 'About', path: '/', subItems: [] },
-    { title: 'Contact Us', path: '/about', subItems: [] }
+    { title: 'Research', path: '/research', subItems: [] },
+    { title: 'Investors', path: '/investors', subItems: [] },
+    { title: 'About', path: '/about', subItems: [] },
+    { title: 'Careers', path: '/careers', subItems: [] },
+    { title: 'Contact Us', path: '/contact', subItems: [] }
 ]
 
 new Vue({
