@@ -19,15 +19,12 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 768px) {
-    .container-xxl {
-        padding: 1.5rem;
-    }
-}
+
+.container-xxl {}
 
 @media (min-width: 768px) {
     .my-md-4 {
-        margin-top: 3em !important;
+        margin-top: 0 !important;
         margin-bottom: 1.5rem !important;
     }
 }

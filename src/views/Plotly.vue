@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="body">
         <div class="row">
             <div class="col-sm-6">
                 <plotly-graph />
@@ -10,7 +10,7 @@
                         <p>Consistent visuals on wider screen.</p>
                     </template>
 
-                    <template v-slot:title>
+                    <template v-slot:heading>
                         Surface Plot With Contours using
                         <a
                             href="https://github.com/plotly/plotly.js"
@@ -59,7 +59,7 @@
                         <p>Consistent visuals on wider screen.</p>
                     </template>
 
-                    <template v-slot:title>
+                    <template v-slot:heading>
                         Ribbon Plots with
                         <a
                             href="https://github.com/plotly/plotly.js"
@@ -121,3 +121,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.body {
+    padding: 1.5em 1em;
+}
+</style>

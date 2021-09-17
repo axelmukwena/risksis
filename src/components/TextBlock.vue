@@ -3,27 +3,24 @@
         <p class="small">
             <slot name="head"></slot>
         </p>
-        <h2 class="title">
-            <slot name="title">
-                Title
-            </slot>
-        </h2>
+        <heading>
+            <template v-slot:heading>
+                <slot name="heading">Heading</slot>
+            </template>
+        </heading>
         <slot name="paragraph">Paragraph</slot>
     </div>
 </template>
 
 <script>
+import Heading from './Heading.vue'
 export default {
+    components: { Heading },
     name: 'text-block'
 }
 </script>
 
 <style scoped>
-.title {
-    font-weight: bold;
-    padding-bottom: 10px;
-}
-
 .text-space {
     border: 1px solid gray;
     border-radius: 20px;
@@ -33,7 +30,13 @@ export default {
 
 @media (max-width: 768px) {
     .text-space {
-        padding: 1.5em;
+        padding: 0 1.2em 1.2em 1.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .small {
+        padding-top: 0.9em;
     }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-    <div class="main-container">
+    <div class="page-container">
         <background class="background"></background>
         <div class="body">
             <div class="row g-4">
                 <div class="col-sm-4">
-                    <text-block>
-                        <template v-slot:title>
+                    <text-block class="text-block">
+                        <template v-slot:heading>
                             A
                             <router-link to="three-simple">
                                 simple directed graph
@@ -29,8 +29,8 @@
                     </text-block>
                 </div>
                 <div class="col-sm-4">
-                    <text-block>
-                        <template v-slot:title>
+                    <text-block class="text-block">
+                        <template v-slot:heading>
                             <router-link to="/plotly">
                                 3D Graphs
                             </router-link>
@@ -80,18 +80,17 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-    display: grid;
-}
-
-.background,
 .body {
-    grid-area: 1 / 1;
+    padding: 1.5em 1em;
 }
 .custom-title {
     font-weight: bold;
     color: white;
     font-size: 5em;
     width: 500px;
+}
+
+.text-block {
+    border: 0;
 }
 </style>

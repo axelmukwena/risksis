@@ -18,12 +18,12 @@ const routes = [
     {
         path: '/research',
         name: 'Research',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/Research.vue')
     },
     {
-        path: '/Investors',
-        name: 'investors',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        path: '/investors',
+        name: 'Investors',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Investors.vue')
     },
     {
         path: '/about',
@@ -31,9 +31,14 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     },
     {
+        path: '/careers',
+        name: 'Careers',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Careers.vue')
+    },
+    {
         path: '/contact',
         name: 'Contact Us',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue')
     },
     {
         path: '/three-gradient',

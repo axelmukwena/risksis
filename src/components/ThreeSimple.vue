@@ -25,7 +25,7 @@ export default {
             console.log(wh)
             ForceGraph3D()(document.getElementById('3d-graph'))
                 .width(wh[0])
-                .height(630)
+                .height(700)
                 .zoomToFit(2, 500, node => true)
                 .graphData(gData)
         },
