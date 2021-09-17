@@ -34,8 +34,8 @@ Vue.prototype.$menuItems = [
     },
     { title: 'Research', path: '/research', subItems: [] },
     { title: 'Investors', path: '/investors', subItems: [] },
-    { title: 'About', path: '/about', subItems: [] },
     { title: 'Careers', path: '/careers', subItems: [] },
+    { title: 'About', path: '/about', subItems: [] },
     { title: 'Contact Us', path: '/contact', subItems: [] }
 ]
 

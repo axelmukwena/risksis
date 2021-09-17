@@ -19,8 +19,8 @@ export default {
 </script>
 
 <style scoped>
-
-.container-xxl {}
+.container-xxl {
+}
 
 @media (min-width: 768px) {
     .my-md-4 {
