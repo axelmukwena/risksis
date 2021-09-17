@@ -256,7 +256,6 @@ export default {
 }
 
 .careers-intro {
-    background-image: url('../assets/images/risksis-careers.jpg');
     height: 660px;
     padding: 0 2em;
 }

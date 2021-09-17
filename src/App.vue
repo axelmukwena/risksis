@@ -19,9 +19,6 @@ export default {
 </script>
 
 <style scoped>
-.container-xxl {
-}
-
 @media (min-width: 768px) {
     .my-md-4 {
         margin-top: 0 !important;

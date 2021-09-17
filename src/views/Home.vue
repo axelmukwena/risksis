@@ -1,5 +1,6 @@
 <template>
     <div class="page-container">
+        <background class="background"></background>
         <div class="body">
             <div class="row g-4">
                 <div class="col-sm-4">
@@ -66,9 +67,10 @@
 <script>
 import { Modal } from 'bootstrap'
 import TextBlock from '../components/TextBlock.vue'
+import Background from '../components/Background.vue'
 
 export default {
-    components: { TextBlock },
+    components: { TextBlock, Background },
     name: 'home',
     modal: null,
     mounted() {
