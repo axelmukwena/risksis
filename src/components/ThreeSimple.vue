@@ -6,7 +6,7 @@
 import ForceGraph3D from '3d-force-graph'
 
 export default {
-    name: 'three',
+    name: 'three-simple',
     methods: {
         setUp() {
             // Random tree
@@ -25,14 +25,14 @@ export default {
             console.log(wh)
             ForceGraph3D()(document.getElementById('3d-graph'))
                 .width(wh[0])
-                .height(700)
+                .height(wh[1])
                 .zoomToFit(2, 500, node => true)
                 .graphData(gData)
         },
         getSize() {
             var w = document.body.clientWidth
             var h = document.body.clientHeight
-            return [w - 150, h - 20]
+            return [w - 150, h - 200]
         }
     },
     mounted() {

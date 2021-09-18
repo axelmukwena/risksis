@@ -56,6 +56,26 @@
                         </template>
                     </text-block>
                 </div>
+                <div class="col-sm-4">
+                    <text-block class="text-block">
+                        <template v-slot:heading>
+                            <router-link to="/three-scene">
+                                ThreeJS
+                            </router-link>
+                            Scene
+                        </template>
+                        <template v-slot:paragraph>
+                            This will demonstrate the implementation of the
+                            <a
+                                href="https://threejs.org/docs/index.html"
+                                target="_blank"
+                            >
+                                ThreeJS </a
+                            >
+                            Library
+                        </template>
+                    </text-block>
+                </div>
             </div>
             <div class="row g-4">
                 <div class="col"></div>

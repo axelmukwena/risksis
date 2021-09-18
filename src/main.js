@@ -18,6 +18,17 @@ Vue.use(Particles)
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios
+
+Vue.prototype.$debounce = function(func, timeout = 300) {
+    let timer
+    return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            func.apply(this, args)
+        }, timeout)
+    }
+}
+
 Vue.prototype.$menuItems = [
     {
         title: 'Products & Services',

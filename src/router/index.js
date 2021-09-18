@@ -7,52 +7,52 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'home',
         component: Home
     },
     {
         path: '/products',
-        name: 'Products & Services',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        name: 'products',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Products.vue')
     },
     {
         path: '/research',
-        name: 'Research',
+        name: 'research',
         component: () => import(/* webpackChunkName: "about" */ '../views/Research.vue')
     },
     {
         path: '/investors',
-        name: 'Investors',
+        name: 'investors',
         component: () => import(/* webpackChunkName: "about" */ '../views/Investors.vue')
     },
     {
         path: '/about',
-        name: 'About',
+        name: 'about',
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     },
     {
         path: '/careers',
-        name: 'Careers',
+        name: 'careers',
         component: () => import(/* webpackChunkName: "about" */ '../views/Careers.vue')
     },
     {
         path: '/contact',
-        name: 'Contact Us',
+        name: 'contact-us',
         component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue')
     },
     {
-        path: '/three-gradient',
-        name: 'Three',
-        component: () => import(/* webpackChunkName: "about" */ '../views/ThreeGrad.vue')
+        path: '/three-scene',
+        name: 'three-scene',
+        component: () => import(/* webpackChunkName: "about" */ '../views/ThreeScene.vue')
     },
     {
         path: '/plotly',
-        name: 'Plotly',
+        name: 'plotly',
         component: () => import(/* webpackChunkName: "about" */ '../views/Plotly.vue')
     },
     {
         path: '/three-simple',
-        name: 'Simple',
+        name: 'simple',
         component: () => import(/* webpackChunkName: "about" */ '../views/ThreeSim.vue')
     }
 ]

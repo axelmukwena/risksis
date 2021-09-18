@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.1.4",
+    "@types/three": "^0.131.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
