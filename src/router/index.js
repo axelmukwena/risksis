@@ -54,6 +54,11 @@ const routes = [
         path: '/three-simple',
         name: 'simple',
         component: () => import(/* webpackChunkName: "about" */ '../views/ThreeSim.vue')
+    },
+    {
+        path: '/graph',
+        name: 'graph',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Graph.vue')
     }
 ]
 

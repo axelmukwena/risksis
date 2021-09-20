@@ -28,7 +28,6 @@ export default {
             const topBarHeight = document.getElementById('main-top-bar').clientHeight
             const h = (mainContainerHeight - topBarHeight).toString() + 'px'
             document.getElementById('body-container').style.minHeight = h
-            console.log(mainContainerHeight, topBarHeight)
         }
     },
     mounted() {

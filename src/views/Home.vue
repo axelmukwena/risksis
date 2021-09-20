@@ -78,7 +78,28 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col"></div>
+                <div class="col-sm-4">
+                    <text-block class="text-block">
+                        <template v-slot:heading>
+                            Experimenting with a connected
+                            <router-link to="/graph">
+                                graph
+                            </router-link>
+                        </template>
+                        <template v-slot:paragraph>
+                            Using the
+                            <a
+                                href="https://threejs.org/docs/index.html"
+                                target="_blank"
+                            >
+                                ThreeJS </a
+                            >
+                            Library
+                        </template>
+                    </text-block>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
             </div>
         </div>
     </div>
@@ -112,5 +133,6 @@ export default {
 
 .text-block {
     border: 0;
+    margin-bottom: 1em;;
 }
 </style>
