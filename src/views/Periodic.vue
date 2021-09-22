@@ -1,20 +1,11 @@
 <template>
     <div>
         <div id="periodic-container"></div>
-        <div id="info">
-            <a href="http://threejs.org" target="_blank">three.js css3d</a> -
-            periodic table.
-            <a
-                href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran"
-                target="_blank"
-                >info</a
-            >.
-        </div>
-        <div id="menu">
-            <button id="table">TABLE</button>
-            <button id="sphere">SPHERE</button>
-            <button id="helix">HELIX</button>
-            <button id="grid">GRID</button>
+        <div id="periodic-menu">
+            <button @click="transform(table, 2000)" class="periodic-button" id="table">TABLE</button>
+            <button @click="transform(sphere, 2000)" class="periodic-button" id="sphere">SPHERE</button>
+            <button @click="transform(helix, 2000)" class="periodic-button" id="helix">HELIX</button>
+            <button @click="transform(grid, 2000)" class="periodic-button" id="grid">GRID</button>
         </div>
     </div>
 </template>
@@ -32,7 +23,7 @@ export default {
     name: 'periodic',
     data() {
         return {
-            table: [
+            elements: [
                 'H',
                 'Hydrogen',
                 '1.00794',
@@ -630,7 +621,10 @@ export default {
             renderer: null,
             controls: null,
             objects: [],
-            targets: { table: [], sphere: [], helix: [], grid: [] },
+            table: [],
+            sphere: [],
+            helix: [],
+            grid: [],
             width: null,
             height: null
         }
@@ -650,29 +644,29 @@ export default {
             this.camera.position.z = 3000
             this.scene = new THREE.Scene()
 
-            var element, number, symbol, details, object, vector, i, l, button
+            var element, number, symbol, details, object, vector, i, l
 
             // table
-            for (i = 0; i < this.table.length; i += 5) {
+            for (i = 0; i < this.elements.length; i += 5) {
                 element = document.createElement('div')
-                element.className = 'element'
+                element.className = 'periodic-element'
                 element.style.backgroundColor =
                     'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')'
 
                 number = document.createElement('div')
-                number.className = 'number'
+                number.className = 'periodic-number'
                 number.textContent = i / 5 + 1
                 element.appendChild(number)
 
                 symbol = document.createElement('div')
-                symbol.className = 'symbol'
-                symbol.textContent = this.table[i]
+                symbol.className = 'periodic-symbol'
+                symbol.textContent = this.elements[i]
                 element.appendChild(symbol)
 
                 details = document.createElement('div')
-                details.className = 'details'
+                details.className = 'periodic-details'
                 details.innerHTML =
-                    this.table[i + 1] + '<br>' + this.table[i + 2]
+                    this.elements[i + 1] + '<br>' + this.elements[i + 2]
                 element.appendChild(details)
 
                 object = new CSS3DObject(element)
@@ -684,10 +678,10 @@ export default {
                 this.objects.push(object)
 
                 object = new THREE.Object3D()
-                object.position.x = this.table[i + 3] * 140 - 1330
-                object.position.y = -(this.table[i + 4] * 180) + 990
+                object.position.x = this.elements[i + 3] * 140 - 1330
+                object.position.y = -(this.elements[i + 4] * 180) + 990
 
-                this.targets.table.push(object)
+                this.table.push(object)
             }
 
             // sphere
@@ -706,7 +700,7 @@ export default {
 
                 object.lookAt(vector)
 
-                this.targets.sphere.push(object)
+                this.sphere.push(object)
             }
 
             // helix
@@ -726,7 +720,7 @@ export default {
 
                 object.lookAt(vector)
 
-                this.targets.helix.push(object)
+                this.helix.push(object)
             }
 
             // grid
@@ -737,15 +731,14 @@ export default {
                 object.position.y = -(Math.floor(i / 5) % 5) * 400 + 800
                 object.position.z = Math.floor(i / 25) * 1000 - 2000
 
-                this.targets.grid.push(object)
+                this.grid.push(object)
             }
-
-            this.scene.background = new THREE.Color(0xFF0000)
 
             // Renderer
             this.renderer = new CSS3DRenderer()
             this.renderer.setSize(this.width, this.height)
             this.renderer.domElement.style.position = 'absolute'
+            this.renderer.domElement.style.backgroundColor = '#000000'
             document
                 .getElementById('periodic-container')
                 .appendChild(this.renderer.domElement)
@@ -760,46 +753,9 @@ export default {
             this.controls.maxDistance = 6000
             this.controls.addEventListener('change', this.render)
 
-            button = document.getElementById('table')
-            button.addEventListener(
-                'click',
-                function(event) {
-                    this.transform(this.targets.table, 2000)
-                },
-                false
-            )
-
-            button = document.getElementById('sphere')
-            button.addEventListener(
-                'click',
-                function(event) {
-                    this.transform(this.targets.sphere, 2000)
-                },
-                false
-            )
-
-            button = document.getElementById('helix')
-            button.addEventListener(
-                'click',
-                function(event) {
-                    this.transform(this.targets.helix, 2000)
-                },
-                false
-            )
-
-            button = document.getElementById('grid')
-            button.addEventListener(
-                'click',
-                function(event) {
-                    this.transform(this.targets.grid, 2000)
-                },
-                false
-            )
-
-            this.transform(this.targets.table, 2000)
+            this.transform(this.table, 2000)
             window.addEventListener('resize', this.onWindowResize, false)
         },
-
         transform(targets, duration) {
             TWEEN.removeAll()
 
@@ -871,17 +827,17 @@ export default {
 }
 </script>
 
-<style scoped>
-body {
-    background-color: #000000 !important;
+<style>
+#periodic-container {
+    background-color: #000000;
     margin: 0;
 }
 
-a {
+.periodic-a {
     color: #ffffff;
 }
 
-#info {
+#periodic-info {
     position: absolute;
     width: 100%;
     color: #ffffff;
@@ -892,33 +848,33 @@ a {
     text-align: center;
     z-index: 1;
 }
-#menu {
+#periodic-menu {
     position: absolute;
     bottom: 20px;
     width: 100%;
     text-align: center;
 }
-.element {
+.periodic-element {
     width: 120px;
     height: 160px;
     box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
     border: 1px solid rgba(127, 255, 255, 0.25);
     text-align: center;
-    cursor: pointer;
+    cursor: default;
     font-family: Helvetica, sans-serif;
 }
-.element:hover {
+.periodic-element:hover {
     box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.75);
     border: 1px solid rgba(127, 255, 255, 0.75);
 }
-.element .number {
+.periodic-element .periodic-number {
     position: absolute;
     top: 20px;
     right: 20px;
     font-size: 12px;
     color: rgba(127, 255, 255, 0.75);
 }
-.element .symbol {
+.periodic-element .periodic-symbol {
     position: absolute;
     top: 40px;
     left: 0px;
@@ -928,7 +884,7 @@ a {
     color: rgba(255, 255, 255, 0.75);
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
 }
-.element .details {
+.periodic-element .periodic-details {
     position: absolute;
     bottom: 15px;
     left: 0px;
@@ -936,7 +892,7 @@ a {
     font-size: 12px;
     color: rgba(127, 255, 255, 0.75);
 }
-button {
+.periodic-button {
     color: rgba(127, 255, 255, 0.75);
     background: transparent;
     outline: 1px solid rgba(127, 255, 255, 0.75);
@@ -944,10 +900,10 @@ button {
     padding: 5px 10px;
     cursor: pointer;
 }
-button:hover {
+.periodic-button:hover {
     background-color: rgba(0, 255, 255, 0.5);
 }
-button:active {
+.periodic-button:active {
     color: #000000;
     background-color: rgba(0, 255, 255, 0.75);
 }
