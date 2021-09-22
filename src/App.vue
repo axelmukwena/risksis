@@ -1,7 +1,7 @@
 <template>
     <div id="main-container" class="main-container">
-        <top-bar id="main-top-bar"/>
-        <div id="body-container" class="container-xxl my-md-4 bd-layout">
+        <top-bar id="main-top-bar" />
+        <div id="content-container" class="container-xxl my-md-4 bd-layout">
             <router-view />
         </div>
     </div>
@@ -16,23 +16,10 @@ export default {
         TopBar
     },
     data() {
-        return {
-            width: null,
-            height: null,
-            mainContainer: null
-        }
+        return {}
     },
-    methods: {
-        bodyContainerHeight() {
-            const mainContainerHeight = document.getElementById('main-container').clientHeight
-            const topBarHeight = document.getElementById('main-top-bar').clientHeight
-            const h = (mainContainerHeight - topBarHeight).toString() + 'px'
-            document.getElementById('body-container').style.minHeight = h
-        }
-    },
-    mounted() {
-        this.bodyContainerHeight()
-    }
+    methods: {},
+    mounted() {}
 }
 </script>
 
@@ -51,10 +38,10 @@ export default {
 
 <style>
 html {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 body {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 </style>

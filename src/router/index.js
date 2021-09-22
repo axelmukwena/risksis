@@ -59,6 +59,11 @@ const routes = [
         path: '/graph',
         name: 'graph',
         component: () => import(/* webpackChunkName: "about" */ '../views/Graph.vue')
+    },
+    {
+        path: '/periodic',
+        name: 'periodic',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Periodic.vue')
     }
 ]
 

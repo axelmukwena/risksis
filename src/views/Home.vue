@@ -98,7 +98,31 @@
                         </template>
                     </text-block>
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <text-block class="text-block">
+                        <template v-slot:heading>
+                            <router-link to="/periodic">
+                                Periodic table
+                            </router-link>
+                        </template>
+                        <template v-slot:paragraph>
+                            Using
+                            <a
+                                href="https://threejs.org/docs/index.html"
+                                target="_blank"
+                            >
+                                ThreeJS </a
+                            >
+                            and
+                            <a
+                                href="https://github.com/mrdoob/three.js/blob/dev/examples/jsm/libs/tween.module.min.js"
+                                target="_blank"
+                            >
+                                Tween </a
+                            >
+                        </template>
+                    </text-block>
+                </div>
                 <div class="col-sm-4"></div>
             </div>
         </div>

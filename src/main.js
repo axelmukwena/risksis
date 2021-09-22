@@ -29,6 +29,7 @@ Vue.prototype.$debounce = function(func, timeout = 300) {
     }
 }
 
+// Menu links
 Vue.prototype.$menuItems = [
     {
         title: 'Products & Services',
@@ -49,6 +50,28 @@ Vue.prototype.$menuItems = [
     { title: 'About', path: '/about', subItems: [] },
     { title: 'Contact Us', path: '/contact', subItems: [] }
 ]
+
+// Toggle to show top-bar
+Vue.prototype.$fullScreenOn = function() {
+    document.getElementById('main-top-bar').style.display = 'none'
+    document.getElementById('content-container').className = ''
+}
+Vue.prototype.$fullScreenOff = function() {
+    document.getElementById('main-top-bar').style.display = 'block'
+    document.getElementById('content-container').className = 'container-xxl my-md-4 bd-layout'
+}
+
+// To adjust the height for the scenes. Do not remove
+Vue.prototype.$bodyContainerHeight = function() {
+    const windowHeight = window.innerHeight
+    // const mainContainerHeight = document.getElementById('main-container').clientHeight
+    const topBarHeight = document.getElementById('main-top-bar').clientHeight
+    const h = (windowHeight - topBarHeight).toString() + 'px'
+    document.getElementById('content-container').style.height = h
+    var width = document.getElementById('content-container').clientWidth
+    var height = document.getElementById('content-container').clientHeight
+    return [width, height]
+}
 
 new Vue({
     VueMeta,
