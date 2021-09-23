@@ -67,3 +67,22 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Explore
    - https://acko.net/
+
+### Weighted, directional graph
+##### Original Data
+   - https://snap.stanford.edu/data/soc-sign-bitcoin-otc.html
+   - https://snap.stanford.edu/data/
+
+##### Appending with names dataset from Google BigQuery
+   - https://github.com/aakashkag/People-Name-List
+   - https://cloud.google.com/bigquery/public-data/
+   
+   ``` sql
+   SELECT commit, author.name as author_name, message, repo_name FROM bigquery-public-data.github_repos.commits LIMIT 36000
+   ```
+   - I couldn't save all the rows, BigQuery Limitations
+
+### MeshLambertMaterial
+   - Due to the simplicity of the reflectance and illumination models, performance will be greater when using this material over the MeshPhongMaterial, MeshStandardMaterial or MeshPhysicalMaterial, at the cost of some graphical accuracy.
+
+

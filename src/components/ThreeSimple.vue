@@ -7,11 +7,18 @@ import ForceGraph3D from '3d-force-graph'
 
 export default {
     name: 'three-simple',
+    data() {
+        return {
+            data: [...Array(10).keys()].map(i => ({ id: i })),
+            keys: [...Array(10).keys()],
+            gData: null
+        }
+    },
     methods: {
         setUp() {
             // Random tree
-            const N = 300
-            const gData = {
+            const N = 10
+            this.gData = {
                 nodes: [...Array(N).keys()].map(i => ({ id: i })),
                 links: [...Array(N).keys()]
                     .filter(id => id)
@@ -22,12 +29,11 @@ export default {
             }
 
             var wh = this.getSize()
-            console.log(wh)
             ForceGraph3D()(document.getElementById('3d-graph'))
                 .width(wh[0])
                 .height(wh[1])
                 .zoomToFit(2, 500, node => true)
-                .graphData(gData)
+                .graphData(this.gData)
         },
         getSize() {
             var w = document.body.clientWidth
@@ -37,6 +43,7 @@ export default {
     },
     mounted() {
         this.setUp()
+        console.log(this.gData)
     }
 }
 </script>

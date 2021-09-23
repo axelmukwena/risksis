@@ -3,19 +3,19 @@
 </template>
 
 <script>
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import * as THREE from 'three'
+import ForceGraph3D from '3d-force-graph'
+import graphData from '../assets/data/graph_data.json'
 
 export default {
     name: 'graph',
     components: {},
     data() {
         return {
-            camera: null,
-            scene: null,
-            controls: null,
-            renderer: null,
-            mesh: null,
+            data: graphData.slice(0, 100),
+            nodeIDs: [],
+            myNodes: [],
+            myLinks: [],
             width: null,
             height: null
         }
@@ -25,61 +25,88 @@ export default {
     },
     methods: {
         init() {
-            this.sizes()
-            const container = document.getElementById('connected-graph')
+            this.processData()
+            this.gData = {
+                nodes: this.myNodes,
+                links: this.myLinks
+            }
 
-            this.camera = new THREE.PerspectiveCamera(
-                75,
-                this.width / this.height,
-                0.01,
-                1500
-            )
-            this.camera.position.z = 60
-            this.scene = new THREE.Scene()
-
-            // Sphere Geometry
-            this.sphere()
-
-            // Lights and helpers
-            const pointLightRight = new THREE.PointLight(0xffffff)
-            // const pointLightLeft = new THREE.PointLight(0xffffff)
-            const ambientLight = new THREE.AmbientLight(0x2b659c, 2)
-            pointLightRight.position.set(500, 100, 100)
-            this.scene.add(pointLightRight, ambientLight)
-
-            this.scene.background = new THREE.Color(0xffffff)
-
-            // Renderer
-            this.renderer = new THREE.WebGLRenderer({ antialias: true })
-            this.controls = new OrbitControls(
-                this.camera,
-                this.renderer.domElement
-            )
-            this.renderer.setSize(this.width, this.height)
-            container.appendChild(this.renderer.domElement)
-
+            this.render()
             window.addEventListener('resize', this.onWindowResize, false)
         },
-        sphere() {
-            const geometry = new THREE.SphereGeometry(
-                15,
-                100,
-                100,
-                0,
-                Math.PI * 2,
-                0,
-                Math.PI
-            )
-            const material = new THREE.MeshStandardMaterial({ color: 0x2b659c })
-            this.mesh = new THREE.Mesh(geometry, material)
-            this.scene.add(this.mesh)
+        processData() {
+            // Register all arrays
+            for (var i = 0; i < this.data.length; i++) {
+                this.nodeIDs.push(this.data[i][0])
+            }
+
+            // Append nodes and links their properties
+            for (i = 0; i < this.data.length; i++) {
+                this.myNodes.push({
+                    id: this.data[i][0],
+                    name: this.data[i][3],
+                    group: Math.floor(Math.random() * 3)
+                })
+
+                var targets = this.data[i][1].slice(0, 5)
+                var weights = this.data[i][2].slice(0, 5)
+                for (var j = 0; j < targets.length; j++) {
+                    if (this.nodeIDs.includes(targets[j])) {
+                        this.myLinks.push({
+                            source: this.data[i][0],
+                            target: targets[j],
+                            weight: weights[j]
+                        })
+                    }
+                }
+            }
         },
-        animate() {
-            requestAnimationFrame(this.animate)
-            this.mesh.rotation.x += 0.01
-            this.mesh.rotation.y += 0.01
-            this.mesh.rotation.z += 0.01
-            this.render()
+        render() {
+            this.sizes()
+
+            const container = document.getElementById('connected-graph')
+            const Graph = ForceGraph3D()(container)
+                .graphData(this.gData)
+
+                // Node styling
+                .nodeVal(7)
+                .nodeAutoColorBy('group')
+                // .nodeColor(0x0d75d8)
+                .nodeOpacity(1)
+                .nodeResolution(20)
+                .nodeLabel(
+                    n =>
+                        `<span style="background: black; padding: 5px; border-radius: 4px;">${n.name}</span>`
+                )
+                .onNodeClick(node => {
+                    // Aim at node from outside it
+                    const distance = 40
+                    const distRatio =
+                        1 + distance / Math.hypot(node.x, node.y, node.z)
+
+                    Graph.cameraPosition(
+                        {
+                            x: node.x * distRatio,
+                            y: node.y * distRatio,
+                            z: node.z * distRatio
+                        }, // new position
+                        node, // lookAt ({ x, y, z })
+                        3000 // ms transition duration
+                    )
+                })
+
+                // Link Styling
+                .linkColor(0x000000)
+                .linkOpacity(0.5)
+                .linkWidth(l => l.weight)
+
+                // Layout
+                .backgroundColor('#ffffff')
+                .width(this.width)
+                .height(this.height)
+
+            // Spread nodes a little wider
+            Graph.d3Force('charge').strength(-200)
         },
         sizes() {
             var sizes = this.$bodyContainerHeight()
@@ -87,19 +114,12 @@ export default {
             this.height = sizes[1]
         },
         onWindowResize() {
-            this.sizes()
-            this.camera.aspect = this.width / this.height
-            this.camera.updateProjectionMatrix()
-            this.renderer.setSize(this.width, this.height)
             this.render()
-        },
-        render() {
-            this.renderer.render(this.scene, this.camera)
         }
     },
     mounted() {
         this.init()
-        this.animate()
+        // console.log(this.myNodes)
     },
     destroyed() {
         window.removeEventListener('resize', this.onWindowResize, false)

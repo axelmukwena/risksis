@@ -637,7 +637,7 @@ export default {
             this.sizes()
             this.camera = new THREE.PerspectiveCamera(
                 40,
-                this.height / this.height,
+                this.width / this.height,
                 1,
                 10000
             )

@@ -16,16 +16,12 @@ export default {
             renderer: null,
             mesh: null,
             width: null,
-            height: null,
-            // 'body-container' is always there because it's a parent element from App.vue
-            bodyContainer: document.getElementById('body-container')
+            height: null
         }
     },
     methods: {
         init() {
-            // Setup
-            this.width = this.bodyContainer.clientWidth
-            this.height = this.bodyContainer.clientHeight
+            this.sizes()
             const container = document.getElementById('three-scene-container')
 
             this.camera = new Three.PerspectiveCamera(75, this.width / this.height, 0.01, 150)
@@ -74,6 +70,11 @@ export default {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement)
             this.renderer.setSize(this.width, this.height)
             container.appendChild(this.renderer.domElement)
+        },
+        sizes() {
+            var sizes = this.$bodyContainerHeight()
+            this.width = sizes[0]
+            this.height = sizes[1]
         },
         addStar() {
             const geometry = new Three.SphereGeometry(0.25, 24, 24)
