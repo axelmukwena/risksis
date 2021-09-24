@@ -2,7 +2,7 @@
     <div>
         <div id="connected-graph"></div>
         <div class="graph-menu">
-            <p>Hey</p>
+            <p style="font-weight: bold; color: white;">Real Time Menu</p>
         </div>
     </div>
 </template>
@@ -218,7 +218,7 @@ export default {
 .graph-menu {
     position: absolute;
     margin: auto;
-    padding: 10px;
+    padding: 15px;
     bottom: 20px;
     right: 40px;
     left: 40px;
