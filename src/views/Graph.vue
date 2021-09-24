@@ -79,7 +79,7 @@ export default {
                 .graphData(this.gData)
 
                 // Node styling
-                .nodeVal(7)
+                .nodeVal(12)
                 // .nodeAutoColorBy('group')
                 // .nodeColor(0x0d75d8)
                 .nodeColor(node =>
