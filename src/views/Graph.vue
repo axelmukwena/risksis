@@ -17,7 +17,7 @@ export default {
     components: {},
     data() {
         return {
-            data: graphData.slice(0, 100),
+            data: graphData.slice(0, 1000),
             nodeIDs: [],
             myNodes: [],
             myLinks: [],
