@@ -80,9 +80,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    ``` sql
    SELECT commit, author.name as author_name, message, repo_name FROM bigquery-public-data.github_repos.commits LIMIT 36000
    ```
-   - I couldn't save all the rows, BigQuery Limitations
+   - I couldn't save all the rows (limited to around 16000 to save to local), BigQuery Limitations
 
 ### MeshLambertMaterial
    - Due to the simplicity of the reflectance and illumination models, performance will be greater when using this material over the MeshPhongMaterial, MeshStandardMaterial or MeshPhysicalMaterial, at the cost of some graphical accuracy.
 
+### 3D Force Graph
+   - https://github.com/vasturiano/3d-force-graph
+
+### Object GUI (Menu)
+   - https://github.com/matteobruni/object-gui
 

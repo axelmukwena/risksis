@@ -1,5 +1,10 @@
 <template>
-    <div id="connected-graph"></div>
+    <div>
+        <div id="connected-graph"></div>
+        <div class="graph-menu">
+            <p>Hey</p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -31,6 +36,7 @@ export default {
                 links: this.myLinks
             }
 
+            this.getNeighbors()
             this.render()
             window.addEventListener('resize', this.onWindowResize, false)
         },
@@ -64,14 +70,25 @@ export default {
         render() {
             this.sizes()
 
+            const highlightNodes = new Set()
+            const highlightLinks = new Set()
+            let hoverNode = null
+
             const container = document.getElementById('connected-graph')
-            const Graph = ForceGraph3D()(container)
+            this.Graph = ForceGraph3D()(container)
                 .graphData(this.gData)
 
                 // Node styling
                 .nodeVal(7)
-                .nodeAutoColorBy('group')
+                // .nodeAutoColorBy('group')
                 // .nodeColor(0x0d75d8)
+                .nodeColor(node =>
+                    highlightNodes.has(node)
+                        ? node === hoverNode
+                            ? 'rgb(255,0,0,1)'
+                            : 'rgba(255,160,0,0.8)'
+                        : 'rgb(13,117,216)'
+                )
                 .nodeOpacity(1)
                 .nodeResolution(20)
                 .nodeLabel(
@@ -84,7 +101,7 @@ export default {
                     const distRatio =
                         1 + distance / Math.hypot(node.x, node.y, node.z)
 
-                    Graph.cameraPosition(
+                    this.Graph.cameraPosition(
                         {
                             x: node.x * distRatio,
                             y: node.y * distRatio,
@@ -94,19 +111,87 @@ export default {
                         3000 // ms transition duration
                     )
                 })
+                .onNodeHover(node => {
+                    // no state change
+                    if (
+                        (!node && !highlightNodes.size) ||
+                        (node && hoverNode === node)
+                    ) {
+                        return
+                    }
+
+                    highlightNodes.clear()
+                    highlightLinks.clear()
+                    if (node) {
+                        highlightNodes.add(node)
+                        node.neighbors.forEach(neighbor =>
+                            highlightNodes.add(neighbor)
+                        )
+                        node.links.forEach(link => highlightLinks.add(link))
+                    }
+
+                    hoverNode = node || null
+
+                    this.updateHighlight(this.Graph)
+                })
+                .onLinkHover(link => {
+                    highlightNodes.clear()
+                    highlightLinks.clear()
+
+                    if (link) {
+                        highlightLinks.add(link)
+                        highlightNodes.add(link.source)
+                        highlightNodes.add(link.target)
+                    }
+
+                    this.updateHighlight(this.Graph)
+                })
 
                 // Link Styling
                 .linkColor(0x000000)
                 .linkOpacity(0.5)
-                .linkWidth(l => l.weight)
+                // .linkWidth(l => l.weight)
+                .linkWidth(l => (highlightLinks.has(l) ? 4 : l.weight))
+                .linkDirectionalParticles(l => (highlightLinks.has(l) ? 4 : 0))
+                .linkDirectionalParticleWidth(4)
 
                 // Layout
                 .backgroundColor('#ffffff')
                 .width(this.width)
                 .height(this.height)
+                .showNavInfo(false)
 
             // Spread nodes a little wider
-            Graph.d3Force('charge').strength(-200)
+            this.Graph.d3Force('charge').strength(-200)
+        },
+        getNeighbors() {
+            // cross-link node objects
+            this.gData.links.forEach(link => {
+                const a = this.getNode(link.source)
+                const b = this.getNode(link.target)
+                !a.neighbors && (a.neighbors = [])
+                !b.neighbors && (b.neighbors = [])
+                a.neighbors.push(b)
+                b.neighbors.push(a)
+
+                !a.links && (a.links = [])
+                !b.links && (b.links = [])
+                a.links.push(link)
+                b.links.push(link)
+            })
+        },
+        getNode(ts) {
+            // https://stackoverflow.com/a/39810268/8050183
+            var index = this.gData.nodes.findIndex(function(sub) {
+                return sub.id === ts
+            })
+            return this.gData.nodes[index]
+        },
+        updateHighlight(Graph) {
+            // trigger update of highlighted objects in scene
+            Graph.nodeColor(Graph.nodeColor())
+                .linkWidth(Graph.linkWidth())
+                .linkDirectionalParticles(Graph.linkDirectionalParticles())
         },
         sizes() {
             var sizes = this.$bodyContainerHeight()
@@ -114,12 +199,13 @@ export default {
             this.height = sizes[1]
         },
         onWindowResize() {
-            this.render()
+            this.sizes()
+            this.Graph.width(this.width)
+            this.Graph.height(this.height)
         }
     },
     mounted() {
         this.init()
-        // console.log(this.myNodes)
     },
     destroyed() {
         window.removeEventListener('resize', this.onWindowResize, false)
@@ -127,3 +213,18 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.graph-menu {
+    position: absolute;
+    margin: auto;
+    padding: 10px;
+    bottom: 20px;
+    right: 40px;
+    left: 40px;
+    width: 60%;
+    height: 120px;
+    background-color: rgba(12, 99, 180, 0.795);
+    border-radius: 5px;
+}
+</style>
