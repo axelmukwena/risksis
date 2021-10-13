@@ -2,9 +2,7 @@
     <div>
         <div id="connected-graph"></div>
         <div class="graph-menu">
-            <div id="pre">
-                <div id="code"></div>
-            </div>
+            <p style="font-weight: bold; color: white;">Real Time Menu</p>
         </div>
     </div>
 </template>
@@ -20,7 +18,7 @@ export default {
     components: {},
     data() {
         return {
-            data: graphData.slice(0, 100),
+            data: graphData.slice(0, 1000),
             nodeIDs: [],
             myNodes: [],
             myLinks: [],
@@ -82,7 +80,7 @@ export default {
                 .graphData(this.gData)
 
                 // Node styling
-                .nodeVal(7)
+                .nodeVal(12)
                 // .nodeAutoColorBy('group')
                 // .nodeColor(0x0d75d8)
                 .nodeColor(node =>
@@ -293,7 +291,7 @@ export default {
 .graph-menu {
     position: absolute;
     margin: auto;
-    padding: 10px;
+    padding: 15px;
     bottom: 20px;
     right: 40px;
     left: 40px;
