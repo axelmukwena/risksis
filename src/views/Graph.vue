@@ -2,7 +2,9 @@
     <div>
         <div id="connected-graph"></div>
         <div class="graph-menu">
-            <p>Hey</p>
+            <div id="pre">
+                <div id="code"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -11,6 +13,7 @@
 // import * as THREE from 'three'
 import ForceGraph3D from '3d-force-graph'
 import graphData from '../assets/data/graph_data.json'
+import Editor from 'object-gui'
 
 export default {
     name: 'graph',
@@ -202,6 +205,78 @@ export default {
             this.sizes()
             this.Graph.width(this.width)
             this.Graph.height(this.height)
+        },
+        editor() {
+            const code = document.getElementById('code')
+
+            const data = {
+                prop1: 'pluto',
+                prop2: 3,
+                group1: {
+                    prop1: 'paperino',
+                    prop2: 0.3
+                },
+                color1: '#ff0000',
+                select1: 'Item 2',
+                alert: function() {
+                    alert(JSON.stringify(data, null, 4))
+                }
+            }
+
+            const editor = new Editor('sample', 'Sample', data)
+
+            editor.top().right()
+            editor.theme('light')
+
+            const group1 = editor.root.addGroup('group1', 'Group 1', true)
+
+            group1.addProperty('prop1', 'Property 1', 'string').change(() => {
+                console.log(data)
+            })
+
+            group1
+                .addProperty('prop2', 'Property 2', 'number')
+                .min(0)
+                .max(1)
+                .step(0.01)
+                .change(() => {
+                    console.log(data)
+                })
+
+            editor.root
+                .addProperty('prop1', 'Property 1', 'string')
+                .change(() => {
+                    console.log(data)
+                })
+
+            editor.root
+                .addProperty('prop2', 'Property 2', 'number')
+                .min(0)
+                .max(10)
+                .step(0.5)
+                .change(() => {
+                    console.log(data)
+                })
+
+            editor.root.addProperty('color1', 'Color 1', 'color').change(() => {
+                console.log(data)
+            })
+
+            const select1Input = editor.root
+                .addProperty('select1', 'Select 1', 'select')
+                .change(() => {
+                    code.innerText = JSON.stringify(data, null, 4)
+
+                    console.log(data)
+                })
+
+            select1Input.addItem('Item 1')
+            select1Input.addItem('Item 2')
+            select1Input.addItem('Item 3')
+
+            editor.root.addButton('alert', 'Alert')
+
+            code.innerText = JSON.stringify(data, null, 4)
         }
     },
     mounted() {
@@ -224,7 +299,7 @@ export default {
     left: 40px;
     width: 60%;
     height: 120px;
-    background-color: rgba(12, 99, 180, 0.795);
+    background-color: rgba(12, 99, 180, 0.849);
     border-radius: 5px;
 }
 </style>
