@@ -1,5 +1,7 @@
 # Risksis Technology Limited
 
+Renovating a website of a company I was interviewing at, but never got the job. http://www.risksis.com/
+
 ## Project setup
 ```
 npm install
